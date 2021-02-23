@@ -9,7 +9,7 @@ public class FirstExercise {
 
     @Test
     public void check_sin(){
-
+        
         int n = 1;
         int max_n = 10;
 
@@ -25,6 +25,7 @@ public class FirstExercise {
     }
 
 
+    @ServiceMethod
     public static long getFactorial(long f) {
         if (f <= 1) {
             return 1;
