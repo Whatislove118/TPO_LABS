@@ -19,7 +19,7 @@ public class FirstExercise {
                 y += Math.pow(-1, row_n-1)*Math.pow(x, 2*row_n-1) / getFactorial(2*row_n - 1);
             }
             System.out.println("y = " + y + " --  sin(x) = " + Math.sin(x) + " -- x = " + x);
-            Assert.assertEquals(Math.sin(x), y, 0.002);
+            Assert.assertEquals(Math.sin(x), y, 0.01);
         }
 
     }
