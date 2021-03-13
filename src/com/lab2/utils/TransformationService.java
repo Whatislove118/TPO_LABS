@@ -18,10 +18,19 @@ public class TransformationService {
     }
 
     /* Logarithmic part */
-
     public static Double transformateLog3ToLn(Double x){
         return Math.log(x)/Math.log(3);
     }
+
+    public static Double transformateLog5ToLn(Double x){
+        return Math.log(x)/Math.log(5);
+    }
+
+    public static Double transformateLog10ToLn(Double x){
+        return Math.log(x)/Math.log(10);
+    }
+
+
 
 
 }

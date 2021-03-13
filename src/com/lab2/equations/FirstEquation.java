@@ -10,8 +10,8 @@ public class FirstEquation {
         return getEquationODZ(x) ? ((Tangens.func(x) / Cotangens.func(x)) + Cosinus.func(x)) : Double.POSITIVE_INFINITY;
     }
 
-    public static Boolean getEquationODZ(Double x){
-        return x <= 0;
+    private static Boolean getEquationODZ(Double x){
+        return x <= 0 && x != -Math.PI/2;
     }
 
 

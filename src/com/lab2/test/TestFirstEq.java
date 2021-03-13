@@ -22,7 +22,7 @@ public class TestFirstEq {
     @BeforeClass
     public static void setGeneralUp(){
         resultsTestCase = new ArrayList<>();
-        pointInfinity = Math.PI/2;
+        pointInfinity = -Math.PI/2;
 
         boundaryPoints = new HashMap<>();
         boundaryPoints.put(-Math.PI, -1.0);
@@ -42,6 +42,9 @@ public class TestFirstEq {
     public void setUp(){
         resultsTestCase.clear();
     }
+
+
+
 
 
     @Test
