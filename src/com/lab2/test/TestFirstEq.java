@@ -1,6 +1,7 @@
 package com.lab2.test;
 
 import com.lab2.equations.FirstEquation;
+import com.lab2.functions.trigonometrics.Cosinus;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -93,15 +94,6 @@ public class TestFirstEq {
             resultsTestCase.add(FirstEquation.func(pair.getKey()));
             Assert.assertEquals(FirstEquation.func(pair.getKey()), pair.getValue(), 0.01);
         }
-    }
-
-    @Test
-    public void testFunctionPeriodicly(){
-        Double periodicStep = Math.PI * 2;
-        for(Map.Entry<Double, Double> pair: boundaryPoints.entrySet()){
-            Assert.assertEquals(FirstEquation.func(pair.getKey()-periodicStep), pair.getValue(), 0.01);
-        }
-
     }
 
 

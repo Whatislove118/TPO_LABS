@@ -1,20 +1,22 @@
 package com.lab2.utils;
 
+import com.lab2.functions.trigonometrics.Cosinus;
+
 public class TransformationService {
 
     /* Trigonometric part */
     public static Double transformateSinToCos(Double x){
         return Math.sqrt(
-            1 - Math.pow(Math.cos(x), 2)
+            1 - Math.pow(Cosinus.func(x), 2)
         );
     }
 
     public static Double transformateTanToCos(Double x){
-        return transformateSinToCos(x) / Math.cos(x);
+        return transformateSinToCos(x) / Cosinus.func(x);
     }
 
     public static Double transformateCotanToCos(Double x){
-        return Math.cos(x) / transformateSinToCos(x);
+        return Cosinus.func(x) / transformateSinToCos(x);
     }
 
     /* Logarithmic part */
