@@ -5,8 +5,12 @@ import com.lab2.utils.TransformationService;
 public class Cotangens {
 
     public static Double func(Double x){
-        return TransformationService.transformateCotanToCos(x);
+        return checkODZ(x)? TransformationService.transformateCotanToCos(x): Double.NaN;
     }
 
+
+    private static boolean checkODZ(Double x){
+        return x != Math.PI && x != 0;
+    }
 
 }

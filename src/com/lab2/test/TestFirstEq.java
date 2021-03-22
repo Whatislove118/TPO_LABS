@@ -1,7 +1,6 @@
 package com.lab2.test;
 
 import com.lab2.equations.FirstEquation;
-import com.lab2.functions.trigonometrics.Cosinus;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,7 +14,7 @@ import java.util.Map;
 public class TestFirstEq {
 
     private static HashMap<Double, Double> boundaryPoints;
-    private static Double pointInfinity;
+    private static Double point_NOT_IN_ODZ;
     private static ArrayList<Double> resultsTestCase;
     private static HashMap<Double, Double> firstPeriodParameters;
     private static HashMap<Double, Double> secondPeriodParameters;
@@ -23,11 +22,10 @@ public class TestFirstEq {
     @BeforeClass
     public static void setGeneralUp(){
         resultsTestCase = new ArrayList<>();
-        pointInfinity = -Math.PI/2;
+        point_NOT_IN_ODZ = -Math.PI/2;
 
         boundaryPoints = new HashMap<>();
         boundaryPoints.put(-Math.PI, -1.0);
-        boundaryPoints.put(0.0, 1.0);
 
         firstPeriodParameters = new HashMap<>();
         firstPeriodParameters.put(-2.0, 4.36);
@@ -49,23 +47,23 @@ public class TestFirstEq {
 
 
     @Test
-    public void testFunctionValueIsInfinity(){
-        resultsTestCase.add(FirstEquation.func(pointInfinity));
+    public void testFunctionValue_IS_INFINITY(){
+        resultsTestCase.add(FirstEquation.func(point_NOT_IN_ODZ));
         System.out.println(resultsTestCase.get(0));
-        Assert.assertTrue(resultsTestCase.get(0).isInfinite());
+        Assert.assertTrue(resultsTestCase.get(0).isNaN());
     }
 
     @Test
     public void testFirstPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: firstPeriodParameters.entrySet()){
-            Assert.assertEquals(FirstEquation.func(pair.getKey()),pair.getValue(), 0.01);
+            Assert.assertEquals(pair.getValue(),FirstEquation.func(pair.getKey()), 0.01);
         }
     }
 
     @Test
     public void testSecondPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: secondPeriodParameters.entrySet()){
-            Assert.assertEquals(FirstEquation.func(pair.getKey()),pair.getValue(), 0.01);
+            Assert.assertEquals(pair.getValue(),FirstEquation.func(pair.getKey()), 0.01);
         }
     }
 
@@ -92,7 +90,7 @@ public class TestFirstEq {
     public void testFunctionValueInBoundaryPoints(){
         for(Map.Entry<Double, Double> pair : boundaryPoints.entrySet()){
             resultsTestCase.add(FirstEquation.func(pair.getKey()));
-            Assert.assertEquals(FirstEquation.func(pair.getKey()), pair.getValue(), 0.01);
+            Assert.assertEquals(pair.getValue(),FirstEquation.func(pair.getKey()), 0.01);
         }
     }
 

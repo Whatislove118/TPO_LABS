@@ -7,7 +7,7 @@ import com.lab2.functions.trigonometrics.Tangens;
 public class FirstEquation {
 
     public static Double func(Double x){
-        return getEquationODZ(x) ? ((Tangens.func(x) / Cotangens.func(x)) + Cosinus.func(x)) : Double.POSITIVE_INFINITY;
+        return getEquationODZ(x) ? ((Tangens.func(x) / Cotangens.func(x)) + Cosinus.func(x)) : Double.NaN;
     }
 
     private static Boolean getEquationODZ(Double x){

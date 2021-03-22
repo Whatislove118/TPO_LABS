@@ -1,5 +1,6 @@
 package com.lab2.utils;
 
+import com.lab2.functions.logarithmics.LogarifmN;
 import com.lab2.functions.trigonometrics.Cosinus;
 
 public class TransformationService {
@@ -21,15 +22,15 @@ public class TransformationService {
 
     /* Logarithmic part */
     public static Double transformateLog3ToLn(Double x){
-        return Math.log(x)/Math.log(3);
+        return LogarifmN.func(x)/LogarifmN.func(3.0);
     }
 
     public static Double transformateLog5ToLn(Double x){
-        return Math.log(x)/Math.log(5);
+        return LogarifmN.func(x)/LogarifmN.func(5.0);
     }
 
     public static Double transformateLog10ToLn(Double x){
-        return Math.log(x)/Math.log(10);
+        return LogarifmN.func(x)/LogarifmN.func(10.0);
     }
 
 

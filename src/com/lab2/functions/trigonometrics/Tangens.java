@@ -5,8 +5,11 @@ import com.lab2.utils.TransformationService;
 public class Tangens {
 
     public static Double func(Double x){
-        return TransformationService.transformateTanToCos(x);
+        return checkODZ(x)? TransformationService.transformateTanToCos(x): Double.NaN;
     }
 
+    private static boolean checkODZ(Double x){
+        return x != -Math.PI/2 && x != Math.PI/2;
+    }
 
 }
