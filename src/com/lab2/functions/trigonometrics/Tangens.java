@@ -4,7 +4,7 @@ import com.lab2.utils.TransformationService;
 
 public class Tangens {
 
-    public static Double func(Double x){
+    public  Double func(Double x){
         return checkODZ(x)? TransformationService.transformateTanToCos(x): Double.NaN;
     }
 

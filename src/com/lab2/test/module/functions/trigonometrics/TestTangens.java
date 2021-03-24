@@ -1,9 +1,10 @@
-package com.lab2.test.functions.trigonometrics;
+package com.lab2.test.module.functions.trigonometrics;
 
-import com.lab2.functions.trigonometrics.Cotangens;
+import com.lab2.functions.trigonometrics.Sinus;
 import com.lab2.functions.trigonometrics.Tangens;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,6 +17,12 @@ public class TestTangens {
     private static HashMap<Double, Double> separatePoint;
     private static ArrayList<Double> points_NOT_IN_ODZ;
 
+    private static Tangens tangens;
+
+    @BeforeClass
+    public static void setGenerallyUp(){
+        tangens = new Tangens();
+    }
 
     @Before
     public void setUp(){
@@ -38,28 +45,28 @@ public class TestTangens {
     @Test
     public void testPeriod_VALUE(){
         for(Map.Entry<Double, Double> pair : period.entrySet()){
-            Assert.assertEquals(pair.getValue(), Tangens.func(pair.getKey()), 0.001);
+            Assert.assertEquals(pair.getValue(), tangens.func(pair.getKey()), 0.001);
         }
     }
 
     @Test
     public void testFunctionValue_SEPARATE_POINT(){
         for(Map.Entry<Double, Double> pair : separatePoint.entrySet()){
-            Assert.assertEquals(pair.getValue(),Tangens.func(pair.getKey()), 0.001);
+            Assert.assertEquals(pair.getValue(),tangens.func(pair.getKey()), 0.001);
         }
     }
 
     @Test
     public void testFunctionValue_POINT_NOT_IN_ODZ(){
         for(Double point : points_NOT_IN_ODZ){
-            Assert.assertTrue(Tangens.func(point).isNaN());
+            Assert.assertTrue(tangens.func(point).isNaN());
         }
     }
 
     @Test
     public void testFirstPeriod_IS_INCREASING(){
         for(Map.Entry<Double, Double> pair : period.entrySet()){
-            pair.setValue(Tangens.func(pair.getKey()));
+            pair.setValue(tangens.func(pair.getKey()));
         }
         Double lowestValue = period.get(pi/6);
         Double highestValue = period.get(pi/3);

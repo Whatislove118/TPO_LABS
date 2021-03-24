@@ -2,14 +2,21 @@ package com.lab2.equations;
 
 public class SystemEquations {
 
+    public FirstEquation firstEquation;
+    public SecondEquation secondEquation;
 
-    public static Double calculateSystem(Double x){
+    public SystemEquations(FirstEquation firstEquation, SecondEquation secondEquation) {
+        this.firstEquation = firstEquation;
+        this.secondEquation = secondEquation;
+    }
+
+    public  Double calculateSystem(Double x){
         if (!checkODZ(x)){
             return Double.NaN;
         }
         double accuracy = 0.1;
-        Double resultFirstEq = FirstEquation.func(x);
-        Double resultSecondEq = SecondEquation.func(x);
+        Double resultFirstEq = this.firstEquation.func(x);
+        Double resultSecondEq = this.secondEquation.func(x);
         if(Math.abs(resultFirstEq - resultSecondEq) < accuracy){
             return x;
         }

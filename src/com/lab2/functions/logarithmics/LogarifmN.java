@@ -7,7 +7,7 @@ public class LogarifmN {
     private static final double EPS = 1.0e-7;
     private static final Double ln10 = 2.302585092994045684017991454684364207601101488628772976033;
 
-    public static Double func(Double x) {
+    public  Double func(Double x) {
         if (!checkODZ(x)) {
             return Double.NaN;
         }

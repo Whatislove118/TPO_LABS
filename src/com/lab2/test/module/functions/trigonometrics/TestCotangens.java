@@ -1,10 +1,10 @@
-package com.lab2.test.functions.trigonometrics;
+package com.lab2.test.module.functions.trigonometrics;
 
-import com.lab2.functions.logarithmics.LogarifmN;
 import com.lab2.functions.trigonometrics.Cosinus;
 import com.lab2.functions.trigonometrics.Cotangens;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -17,6 +17,12 @@ public class TestCotangens {
     private static HashMap<Double, Double> separatePoint;
     private static ArrayList<Double> points_NOT_IN_ODZ;
 
+    private static Cotangens cotangens;
+
+    @BeforeClass
+    public static void setGenerallyUp(){
+        cotangens = new Cotangens();
+    }
 
     @Before
     public void setUp(){
@@ -39,28 +45,28 @@ public class TestCotangens {
     @Test
     public void testPeriod_VALUE(){
         for(Map.Entry<Double, Double> pair : period.entrySet()){
-            Assert.assertEquals(pair.getValue(), Cotangens.func(pair.getKey()), 0.001);
+            Assert.assertEquals(pair.getValue(), cotangens.func(pair.getKey()), 0.001);
         }
     }
 
     @Test
     public void testFunctionValue_SEPARATE_POINT(){
         for(Map.Entry<Double, Double> pair : separatePoint.entrySet()){
-            Assert.assertEquals(pair.getValue(),Cotangens.func(pair.getKey()), 0.001);
+            Assert.assertEquals(pair.getValue(),cotangens.func(pair.getKey()), 0.001);
         }
     }
 
     @Test
     public void testFunctionValue_POINT_NOT_IN_ODZ(){
         for(Double point : points_NOT_IN_ODZ){
-            Assert.assertTrue(Cotangens.func(point).isNaN());
+            Assert.assertTrue(cotangens.func(point).isNaN());
         }
     }
 
     @Test
     public void testFirstPeriod_IS_DECREASING(){
         for(Map.Entry<Double, Double> pair : period.entrySet()){
-            pair.setValue(Cotangens.func(pair.getKey()));
+            pair.setValue(cotangens.func(pair.getKey()));
         }
         Double lowestValue = period.get(pi/3);
         Double highestValue = period.get(pi/6);

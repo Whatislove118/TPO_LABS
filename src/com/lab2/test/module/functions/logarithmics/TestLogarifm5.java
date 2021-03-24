@@ -1,9 +1,10 @@
-package com.lab2.test.functions.logarithmics;
+package com.lab2.test.module.functions.logarithmics;
 
+import com.lab2.functions.logarithmics.Logarifm3;
 import com.lab2.functions.logarithmics.Logarifm5;
-import com.lab2.functions.logarithmics.LogarifmN;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -12,6 +13,12 @@ import java.util.Map;
 public class TestLogarifm5 {
     private static HashMap<Double, Double> periodPoints;
 
+    private static Logarifm5 logarifm5;
+
+    @BeforeClass
+    public static void setGenerallyUp(){
+        logarifm5 = new Logarifm5();
+    }
 
     @Before
     public void setUp(){
@@ -25,7 +32,7 @@ public class TestLogarifm5 {
     @Test
     public void testFunctionValue(){
         for(Map.Entry<Double, Double> pair : periodPoints.entrySet()){
-            Assert.assertEquals(pair.getValue(),Logarifm5.func(pair.getKey()), 0.001);
+            Assert.assertEquals(pair.getValue(),logarifm5.func(pair.getKey()), 0.001);
         }
     }
 

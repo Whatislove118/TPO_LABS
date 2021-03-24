@@ -1,7 +1,10 @@
-package com.lab2.test;
+package com.lab2.test.module.equations;
 
 
 import com.lab2.equations.SecondEquation;
+import com.lab2.functions.logarithmics.Logarifm10;
+import com.lab2.functions.logarithmics.Logarifm3;
+import com.lab2.functions.logarithmics.Logarifm5;
 import com.lab2.functions.trigonometrics.Cotangens;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,9 +22,11 @@ public class TestSecondEq {
     private static ArrayList<Double> resultsTestCase;
     private static HashMap<Double, Double> firstPeriodParameters;
     private static HashMap<Double, Double> secondPeriodParameters;
+    private static SecondEquation secondEquation;
 
     @BeforeClass
     public static void setGeneralUp(){
+        secondEquation = new SecondEquation(new Logarifm3(), new Logarifm5(), new Logarifm10());
         resultsTestCase = new ArrayList<>();
         separatePoint = 1.0;
         seriesExpansionResult = 0.001684;
@@ -44,26 +49,26 @@ public class TestSecondEq {
     @Test
     public void testFirstPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: firstPeriodParameters.entrySet()){
-            Assert.assertEquals(pair.getValue(),SecondEquation.func(pair.getKey()), 0.001);
+            Assert.assertEquals(pair.getValue(),secondEquation.func(pair.getKey()), 0.001);
         }
     }
 
     @Test
     public void testSecondPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: secondPeriodParameters.entrySet()){
-            Assert.assertEquals(pair.getValue(),SecondEquation.func(pair.getKey()), 0.001);
+            Assert.assertEquals(pair.getValue(),secondEquation.func(pair.getKey()), 0.001);
         }
     }
 
     @Test
     public void testPointMinimum(){
-        Assert.assertEquals(0.0, SecondEquation.func(separatePoint), 0.001);
+        Assert.assertEquals(0.0, secondEquation.func(separatePoint), 0.001);
     }
 
     @Test
     public void testFirstPeriodFunctionValue_IS_DECREASING(){
         for(Map.Entry<Double, Double> pair : firstPeriodParameters.entrySet()){
-            pair.setValue(SecondEquation.func(pair.getKey()));
+            pair.setValue(secondEquation.func(pair.getKey()));
         }
         Double lowestValue = firstPeriodParameters.get(0.7);
         Double highestValue = firstPeriodParameters.get(0.5);
@@ -73,7 +78,7 @@ public class TestSecondEq {
     @Test
     public void testSecondPeriodFunctionValue_IS_INCREASING(){
         for(Map.Entry<Double, Double> pair : secondPeriodParameters.entrySet()) {
-            pair.setValue(SecondEquation.func(pair.getKey()));
+            pair.setValue(secondEquation.func(pair.getKey()));
         }
         Double lowestValue = secondPeriodParameters.get(1.2);
         Double highestValue = secondPeriodParameters.get(1.4);

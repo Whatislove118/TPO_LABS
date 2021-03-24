@@ -1,6 +1,9 @@
-package com.lab2.test;
+package com.lab2.test.module.equations;
 
 import com.lab2.equations.FirstEquation;
+import com.lab2.functions.trigonometrics.Cosinus;
+import com.lab2.functions.trigonometrics.Cotangens;
+import com.lab2.functions.trigonometrics.Tangens;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -18,9 +21,12 @@ public class TestFirstEq {
     private static ArrayList<Double> resultsTestCase;
     private static HashMap<Double, Double> firstPeriodParameters;
     private static HashMap<Double, Double> secondPeriodParameters;
+    private static FirstEquation firstEquation;
+    
     
     @BeforeClass
     public static void setGeneralUp(){
+        firstEquation = new FirstEquation(new Tangens(), new Cosinus(), new Cotangens());
         resultsTestCase = new ArrayList<>();
         point_NOT_IN_ODZ = -Math.PI/2;
 
@@ -48,7 +54,7 @@ public class TestFirstEq {
 
     @Test
     public void testFunctionValue_IS_INFINITY(){
-        resultsTestCase.add(FirstEquation.func(point_NOT_IN_ODZ));
+        resultsTestCase.add(firstEquation.func(point_NOT_IN_ODZ));
         System.out.println(resultsTestCase.get(0));
         Assert.assertTrue(resultsTestCase.get(0).isNaN());
     }
@@ -56,14 +62,14 @@ public class TestFirstEq {
     @Test
     public void testFirstPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: firstPeriodParameters.entrySet()){
-            Assert.assertEquals(pair.getValue(),FirstEquation.func(pair.getKey()), 0.01);
+            Assert.assertEquals(pair.getValue(),firstEquation.func(pair.getKey()), 0.01);
         }
     }
 
     @Test
     public void testSecondPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: secondPeriodParameters.entrySet()){
-            Assert.assertEquals(pair.getValue(),FirstEquation.func(pair.getKey()), 0.01);
+            Assert.assertEquals(pair.getValue(),firstEquation.func(pair.getKey()), 0.01);
         }
     }
 
@@ -71,7 +77,7 @@ public class TestFirstEq {
     @Test
     public void testFirstPeriodOfFunction_IS_INCREASING(){
         for(Map.Entry<Double, Double> pair: firstPeriodParameters.entrySet()){
-            resultsTestCase.add(FirstEquation.func(pair.getKey()));
+            resultsTestCase.add(firstEquation.func(pair.getKey()));
         }
         Assert.assertTrue(resultsTestCase.get(0) < resultsTestCase.get(1));
 
@@ -80,7 +86,7 @@ public class TestFirstEq {
     @Test
     public void testSecondPeriodOfFunction_IS_DECREASING(){
         for(Map.Entry<Double, Double> pair: secondPeriodParameters.entrySet()){
-            resultsTestCase.add(FirstEquation.func(pair.getKey()));
+            resultsTestCase.add(firstEquation.func(pair.getKey()));
         }
         Assert.assertTrue(resultsTestCase.get(0) > resultsTestCase.get(1));
 
@@ -89,8 +95,8 @@ public class TestFirstEq {
     @Test
     public void testFunctionValueInBoundaryPoints(){
         for(Map.Entry<Double, Double> pair : boundaryPoints.entrySet()){
-            resultsTestCase.add(FirstEquation.func(pair.getKey()));
-            Assert.assertEquals(pair.getValue(),FirstEquation.func(pair.getKey()), 0.01);
+            resultsTestCase.add(firstEquation.func(pair.getKey()));
+            Assert.assertEquals(pair.getValue(),firstEquation.func(pair.getKey()), 0.01);
         }
     }
 

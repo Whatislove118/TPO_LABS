@@ -4,7 +4,7 @@ import com.lab2.utils.TransformationService;
 
 public class Logarifm5 {
 
-    public static Double func(Double x){
+    public  Double func(Double x){
         return TransformationService.transformateLog5ToLn(x);
     }
 }
