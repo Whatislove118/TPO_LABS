@@ -8,6 +8,7 @@ import com.lab2.functions.trigonometrics.Cosinus;
 import com.lab2.functions.trigonometrics.Cotangens;
 import com.lab2.functions.trigonometrics.Sinus;
 import com.lab2.functions.trigonometrics.Tangens;
+import sun.rmi.runtime.Log;
 
 public class TransformationService {
 
@@ -16,7 +17,13 @@ public class TransformationService {
 
     public static LogarifmN logarifmN = new LogarifmN();
     
+    public static void setLogarifmN(LogarifmN logarifm){
+        logarifmN = logarifm;
+    }
 
+    public static void setCosinus(Cosinus cos){
+        cosinus = cos;
+    }
 
     /* Trigonometric part */
     public static Double transformateSinToCos(Double x){
