@@ -2,6 +2,7 @@ package com.lab2.test.module.functions.trigonometrics;
 
 import com.lab2.functions.trigonometrics.Sinus;
 import com.lab2.functions.trigonometrics.Tangens;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -18,10 +19,12 @@ public class TestTangens {
     private static ArrayList<Double> points_NOT_IN_ODZ;
 
     private static Tangens tangens;
+    private static CSVWriter writer;
 
     @BeforeClass
     public static void setGenerallyUp(){
         tangens = new Tangens();
+        writer = new CSVWriter();
     }
 
     @Before
@@ -46,6 +49,7 @@ public class TestTangens {
     public void testPeriod_VALUE(){
         for(Map.Entry<Double, Double> pair : period.entrySet()){
             Assert.assertEquals(pair.getValue(), tangens.func(pair.getKey()), 0.001);
+            writer.writeToFile("tan("+ pair.getKey()+") = | " + tangens.func(pair.getKey()));
         }
     }
 
@@ -53,6 +57,7 @@ public class TestTangens {
     public void testFunctionValue_SEPARATE_POINT(){
         for(Map.Entry<Double, Double> pair : separatePoint.entrySet()){
             Assert.assertEquals(pair.getValue(),tangens.func(pair.getKey()), 0.001);
+            writer.writeToFile("tan("+ pair.getKey()+") = | " + tangens.func(pair.getKey()));
         }
     }
 

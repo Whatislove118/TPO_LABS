@@ -9,6 +9,7 @@ import com.lab2.functions.logarithmics.Logarifm5;
 import com.lab2.functions.trigonometrics.Cosinus;
 import com.lab2.functions.trigonometrics.Cotangens;
 import com.lab2.functions.trigonometrics.Tangens;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -20,9 +21,11 @@ import java.util.ArrayList;
 public class TestSystemEq {
     private ArrayList<Double> points;
     private static SystemEquations systemEquations;
+    private static CSVWriter writer;
 
     @BeforeClass
     public static void setGenerallyUp(){
+        writer = new CSVWriter();
         systemEquations = new SystemEquations(
                 new FirstEquation(
                         new Tangens(), new Cosinus(), new Cotangens()
@@ -45,6 +48,7 @@ public class TestSystemEq {
     public void testFunction_DOESNT_HAVE_ANY_DECISION(){
         for (Double point : points){
             Assert.assertTrue(systemEquations.calculateSystem(point).isNaN());
+            writer.writeToFile("secondEq("+point+") = | " + systemEquations.calculateSystem(point));
         }
     }
 }

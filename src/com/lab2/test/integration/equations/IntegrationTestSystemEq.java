@@ -44,14 +44,13 @@ public class IntegrationTestSystemEq {
 
     @Test
     public void integrationTest_ALL_STUBS(){
-        firstEquation = Mockito.spy(FirstEquation.class);
-        secondEquation = Mockito.mock(SecondEquation.class);
+        systemEquations.firstEquation = Mockito.spy(FirstEquation.class);
+        systemEquations.secondEquation = Mockito.mock(SecondEquation.class);
 
 
-        when(firstEquation.func(x)).thenReturn(0.173208);
-        when(secondEquation.func(x)).thenReturn(1.09388);
-        systemEquations = new SystemEquations(firstEquation, secondEquation);
-        Assert.assertEquals(expectedResult, systemEquations.calculateSystem(x), 0.001);
+        when(systemEquations.firstEquation.func(x)).thenReturn(0.173208);
+        when(systemEquations.secondEquation.func(x)).thenReturn(1.09388);
+        Assert.assertTrue(systemEquations.calculateSystem(x).isNaN());
     }
 
     @Test
@@ -59,8 +58,8 @@ public class IntegrationTestSystemEq {
         firstEquation = Mockito.spy(FirstEquation.class);
 
         when(firstEquation.func(x)).thenReturn(0.173208);
-        systemEquations = new SystemEquations(firstEquation, secondEquation);
-        Assert.assertEquals(expectedResult, systemEquations.calculateSystem(x), 0.001);
+        systemEquations = new SystemEquations(firstEquation, new SecondEquation());
+        Assert.assertTrue(systemEquations.calculateSystem(x).isNaN());
     }
 
     @Test

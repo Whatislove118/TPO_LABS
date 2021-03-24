@@ -6,6 +6,7 @@ import com.lab2.functions.logarithmics.Logarifm10;
 import com.lab2.functions.logarithmics.Logarifm3;
 import com.lab2.functions.logarithmics.Logarifm5;
 import com.lab2.functions.trigonometrics.Cotangens;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -23,9 +24,11 @@ public class TestSecondEq {
     private static HashMap<Double, Double> firstPeriodParameters;
     private static HashMap<Double, Double> secondPeriodParameters;
     private static SecondEquation secondEquation;
+    private static CSVWriter writer;
 
     @BeforeClass
     public static void setGeneralUp(){
+        writer = new CSVWriter();
         secondEquation = new SecondEquation(new Logarifm3(), new Logarifm5(), new Logarifm10());
         resultsTestCase = new ArrayList<>();
         separatePoint = 1.0;
@@ -50,6 +53,7 @@ public class TestSecondEq {
     public void testFirstPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: firstPeriodParameters.entrySet()){
             Assert.assertEquals(pair.getValue(),secondEquation.func(pair.getKey()), 0.001);
+            writer.writeToFile("secondEq("+ pair.getKey()+") = | " + secondEquation.func(pair.getKey()));
         }
     }
 
@@ -57,12 +61,14 @@ public class TestSecondEq {
     public void testSecondPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: secondPeriodParameters.entrySet()){
             Assert.assertEquals(pair.getValue(),secondEquation.func(pair.getKey()), 0.001);
+            writer.writeToFile("secondEq("+ pair.getKey()+") = | " + secondEquation.func(pair.getKey()));
         }
     }
 
     @Test
     public void testPointMinimum(){
         Assert.assertEquals(0.0, secondEquation.func(separatePoint), 0.001);
+        writer.writeToFile("secondEq("+ separatePoint + ") = | " + secondEquation.func(separatePoint));
     }
 
     @Test

@@ -6,7 +6,7 @@ import java.io.IOException;
 public class CSVWriter {
     private FileWriter fileWriter;
     private File file;
-    private String fileName = "/test/resources/result.csv";
+    private String fileName = "result.csv";
 
     public CSVWriter()  {
         try{

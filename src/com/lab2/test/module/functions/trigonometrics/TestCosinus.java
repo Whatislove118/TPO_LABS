@@ -2,6 +2,7 @@ package com.lab2.test.module.functions.trigonometrics;
 
 import com.lab2.functions.logarithmics.LogarifmN;
 import com.lab2.functions.trigonometrics.Cosinus;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,12 +16,14 @@ public class TestCosinus {
     private static HashMap<Double, Double> firstPeriod;
     private static HashMap<Double, Double> secondPeriod;
     private static HashMap<Double, Double> separatePoint;
+    private static CSVWriter writer;
 
     private static Cosinus cosinus;
 
     @BeforeClass
     public static void setGenerallyUp(){
         cosinus = new Cosinus();
+        writer = new CSVWriter();
     }
 
 
@@ -46,6 +49,7 @@ public class TestCosinus {
     public void testFirstPeriod_VALUE(){
         for(Map.Entry<Double, Double> pair : firstPeriod.entrySet()){
             Assert.assertEquals(pair.getValue(),cosinus.func(pair.getKey()), 0.001);
+            writer.writeToFile("cos("+ pair.getKey()+") = | " + cosinus.func(pair.getKey()));
         }
     }
 
@@ -53,6 +57,7 @@ public class TestCosinus {
     public void testFunctionValue_SEPARATE_POINT(){
         for(Map.Entry<Double, Double> pair : separatePoint.entrySet()){
             Assert.assertEquals(pair.getValue(),cosinus.func(pair.getKey()), 0.001);
+            writer.writeToFile("cos("+ pair.getKey()+") = | " + cosinus.func(pair.getKey()));
         }
     }
 
@@ -60,6 +65,7 @@ public class TestCosinus {
     public void testSecondPeriod_VALUE(){
         for(Map.Entry<Double, Double> pair : secondPeriod.entrySet()){
             Assert.assertEquals(pair.getValue(),cosinus.func(pair.getKey()), 0.001);
+            writer.writeToFile("cos("+ pair.getKey()+") = | " + cosinus.func(pair.getKey()));
         }
     }
 

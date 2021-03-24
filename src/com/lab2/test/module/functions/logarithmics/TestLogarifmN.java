@@ -2,6 +2,7 @@ package com.lab2.test.module.functions.logarithmics;
 
 import com.lab2.functions.logarithmics.Logarifm3;
 import com.lab2.functions.logarithmics.LogarifmN;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -16,10 +17,12 @@ public class TestLogarifmN {
     private static HashMap<Double, Double> separatePoint;
     private static Double point_NOT_IN_ODZ;
     private static LogarifmN logarifmN;
+    private static CSVWriter writer;
 
     @BeforeClass
     public static void setGenerallyUp(){
         logarifmN = new LogarifmN();
+        writer = new CSVWriter();
     }
 
     @Before
@@ -38,6 +41,7 @@ public class TestLogarifmN {
     public void testFunctionValue(){
         for(Map.Entry<Double, Double> pair : periodPoints.entrySet()){
             Assert.assertEquals(pair.getValue(),logarifmN.func(pair.getKey()), 0.001);
+            writer.writeToFile("logn("+ pair.getKey()+") = | " + logarifmN.func(pair.getKey()));
         }
     }
 
@@ -55,6 +59,7 @@ public class TestLogarifmN {
     public void testFunctionValue_IN_SEPARATE_POINT(){
         for(Map.Entry<Double, Double> pair : separatePoint.entrySet()) {
             Assert.assertEquals(pair.getValue(),logarifmN.func(pair.getKey()), 0.001);
+            writer.writeToFile("logn("+ pair.getKey()+") = | " + logarifmN.func(pair.getKey()));
         }
     }
 

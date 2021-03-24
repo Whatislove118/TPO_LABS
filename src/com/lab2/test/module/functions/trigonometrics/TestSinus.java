@@ -2,6 +2,7 @@ package com.lab2.test.module.functions.trigonometrics;
 
 import com.lab2.functions.trigonometrics.Cotangens;
 import com.lab2.functions.trigonometrics.Sinus;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -17,10 +18,12 @@ public class TestSinus {
     private static HashMap<Double, Double> separatePoint;
 
     private static Sinus sinus;
+    private static CSVWriter writer;
 
     @BeforeClass
     public static void setGenerallyUp(){
         sinus = new Sinus();
+        writer = new CSVWriter();
     }
 
     @Before
@@ -45,6 +48,7 @@ public class TestSinus {
     public void testFirstPeriod_VALUE(){
         for(Map.Entry<Double, Double> pair : firstPeriod.entrySet()){
             Assert.assertEquals(pair.getValue(), -sinus.func(pair.getKey()), 0.001);
+            writer.writeToFile("sin("+ pair.getKey()+") = | " + -sinus.func(pair.getKey()));
         }
     }
 
@@ -52,6 +56,7 @@ public class TestSinus {
     public void testFunctionValue_SEPARATE_POINT(){
         for(Map.Entry<Double, Double> pair : separatePoint.entrySet()){
             Assert.assertEquals(pair.getValue(),sinus.func(pair.getKey()), 0.001);
+            writer.writeToFile("sin("+ pair.getKey()+") = | " + sinus.func(pair.getKey()));
         }
     }
 
@@ -59,6 +64,7 @@ public class TestSinus {
     public void testSecondPeriod_VALUE(){
         for(Map.Entry<Double, Double> pair : secondPeriod.entrySet()){
             Assert.assertEquals(pair.getValue(),sinus.func(pair.getKey()), 0.001);
+            writer.writeToFile("sin("+ pair.getKey()+") = | " + sinus.func(pair.getKey()));
         }
     }
 

@@ -4,6 +4,7 @@ import com.lab2.equations.FirstEquation;
 import com.lab2.functions.trigonometrics.Cosinus;
 import com.lab2.functions.trigonometrics.Cotangens;
 import com.lab2.functions.trigonometrics.Tangens;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -22,13 +23,17 @@ public class TestFirstEq {
     private static HashMap<Double, Double> firstPeriodParameters;
     private static HashMap<Double, Double> secondPeriodParameters;
     private static FirstEquation firstEquation;
+    private static CSVWriter writer;
+
     
     
     @BeforeClass
     public static void setGeneralUp(){
+        writer = new CSVWriter();
         firstEquation = new FirstEquation(new Tangens(), new Cosinus(), new Cotangens());
         resultsTestCase = new ArrayList<>();
         point_NOT_IN_ODZ = -Math.PI/2;
+
 
         boundaryPoints = new HashMap<>();
         boundaryPoints.put(-Math.PI, -1.0);
@@ -63,6 +68,7 @@ public class TestFirstEq {
     public void testFirstPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: firstPeriodParameters.entrySet()){
             Assert.assertEquals(pair.getValue(),firstEquation.func(pair.getKey()), 0.01);
+            writer.writeToFile("firstEq("+ pair.getKey()+") = | " + firstEquation.func(pair.getKey()));
         }
     }
 
@@ -70,6 +76,7 @@ public class TestFirstEq {
     public void testSecondPeriodFunctionValue(){
         for(Map.Entry<Double, Double> pair: secondPeriodParameters.entrySet()){
             Assert.assertEquals(pair.getValue(),firstEquation.func(pair.getKey()), 0.01);
+            writer.writeToFile("firstEq("+ pair.getKey()+") = | " + firstEquation.func(pair.getKey()));
         }
     }
 
@@ -97,6 +104,7 @@ public class TestFirstEq {
         for(Map.Entry<Double, Double> pair : boundaryPoints.entrySet()){
             resultsTestCase.add(firstEquation.func(pair.getKey()));
             Assert.assertEquals(pair.getValue(),firstEquation.func(pair.getKey()), 0.01);
+            writer.writeToFile("firstEq("+ pair.getKey()+") = | " + firstEquation.func(pair.getKey()));
         }
     }
 

@@ -2,6 +2,7 @@ package com.lab2.test.module.functions.logarithmics;
 
 import com.lab2.functions.logarithmics.Logarifm10;
 import com.lab2.functions.logarithmics.Logarifm3;
+import com.lab2.utils.CSVWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -14,10 +15,12 @@ public class TestLogarifm10 {
     private static HashMap<Double, Double> periodPoints;
 
     private static Logarifm10 logarifm10;
+    private static CSVWriter writer;
 
     @BeforeClass
     public static void setGenerallyUp(){
         logarifm10 = new Logarifm10();
+        writer = new CSVWriter();
     }
 
     @Before
@@ -31,6 +34,7 @@ public class TestLogarifm10 {
     public void testFunctionValue(){
         for(Map.Entry<Double, Double> pair : periodPoints.entrySet()){
             Assert.assertEquals(pair.getValue(),logarifm10.func(pair.getKey()), 0.001);
+            writer.writeToFile("log10("+ pair.getKey()+") = | " + logarifm10.func(pair.getKey()));
         }
     }
 
