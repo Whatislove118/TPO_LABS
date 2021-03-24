@@ -17,7 +17,7 @@ public class IntegrationTestLogarifmN {
     LogarifmN logarifmN;
 
     @Test
-    public void isolationTest(){
+    public void integrationTest(){
         when(logarifmN.func(2.0)).thenReturn(0.6931);
         Assert.assertEquals(logarifmN.func(2.0), 0.6931, 0.001);
     }

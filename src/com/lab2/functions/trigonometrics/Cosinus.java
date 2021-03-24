@@ -1,10 +1,10 @@
 package com.lab2.functions.trigonometrics;
 
 import com.lab1.FirstExercise;
+import com.lab2.utils.TransformationService;
 import org.junit.Assert;
 
 public class Cosinus{
-
 
     public  Double func(Double x){
         int n = 0;

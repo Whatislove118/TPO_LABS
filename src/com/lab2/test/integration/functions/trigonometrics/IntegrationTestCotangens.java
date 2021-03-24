@@ -1,10 +1,7 @@
 package com.lab2.test.integration.functions.trigonometrics;
 
-import com.lab2.functions.logarithmics.Logarifm5;
-import com.lab2.functions.logarithmics.LogarifmN;
 import com.lab2.functions.trigonometrics.Cosinus;
 import com.lab2.functions.trigonometrics.Cotangens;
-import com.lab2.functions.trigonometrics.Sinus;
 import com.lab2.utils.TransformationService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,6 +16,9 @@ import static org.mockito.Mockito.when;
 public class IntegrationTestCotangens {
 
     private final static Double pi = Math.PI;
+    Double x = pi/6;
+    Double expectedResult = Math.cos(x) / Math.sin(x);
+    TransformationService transformationService = new TransformationService();
     Cosinus cosinus;
     Cotangens cotangens;
 
@@ -27,21 +27,48 @@ public class IntegrationTestCotangens {
     @Before
     public void setUp(){
         cosinus = new Cosinus();
-        cotangens = new Cotangens();
+        cotangens = new Cotangens(transformationService);
 
     }
 
     @Test
-    public void isolationTest(){
+    public void integrationTest_METHOD_STUB(){
+        transformationService = Mockito.mock(TransformationService.class);
+        when(transformationService.transformateCotanToCos(x)).thenReturn(expectedResult);
+        cotangens = new Cotangens(transformationService);
+        Assert.assertEquals(expectedResult,cotangens.func(x), 0.001);
+    }
+
+    @Test
+    public void integrationTest_ALL_STUBS() {
+        System.out.println(cosinus.func(x));
+        System.out.println(transformationService.transformateSinToCos(x));
         cosinus = Mockito.mock(Cosinus.class);
-        when(cosinus.func(pi/6)).thenReturn(Math.cos(pi/6));
-        TransformationService.setCosinus(cosinus);
-        Assert.assertEquals(cotangens.func(pi/6), Math.cos(pi/6) / Math.sin(pi/6), 0.001);
+        when(cosinus.func(x)).thenReturn(Math.cos(x));
+
+        transformationService = Mockito.spy(TransformationService.class);
+        when(transformationService.transformateSinToCos(x)).thenReturn(Math.sin(x));
+
+        transformationService.setCosinus(cosinus);
+        cotangens = new Cotangens(transformationService);
+        Assert.assertEquals(expectedResult, cotangens.func(x), 0.001);
     }
 
     @Test
-    public void integrationTest(){
-        TransformationService.setCosinus(cosinus);
-        Assert.assertEquals(cotangens.func(pi/6), Math.cos(pi/6) / Math.sin(pi/6), 0.001);
+    public void integrationTest_FIRST_STUB(){
+        cosinus = Mockito.mock(Cosinus.class);
+        when(cosinus.func(x)).thenReturn(Math.cos(x));
+
+        transformationService = new TransformationService();
+        transformationService.setCosinus(cosinus);
+        cotangens = new Cotangens(transformationService);
+        Assert.assertEquals(expectedResult, cotangens.func(x), 0.001);
+    }
+
+    @Test
+    public void integrationTest_WITHOUT_STUB(){
+        transformationService.setCosinus(cosinus);
+        Assert.assertEquals(expectedResult,cotangens.func(x),  0.001);
+
     }
 }

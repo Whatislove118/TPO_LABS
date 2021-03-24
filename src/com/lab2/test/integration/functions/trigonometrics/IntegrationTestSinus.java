@@ -19,6 +19,9 @@ import static org.mockito.Mockito.when;
 public class IntegrationTestSinus {
 
     private final static Double pi = Math.PI;
+    Double x = pi/4;
+    Double expectedResult = Math.sin(x);
+    TransformationService transformationService = new TransformationService();
     Cosinus cosinus;
     Sinus sinus;
 
@@ -27,21 +30,36 @@ public class IntegrationTestSinus {
     @Before
     public void setUp(){
         cosinus = new Cosinus();
-        sinus = new Sinus();
+        sinus = new Sinus(transformationService);
 
     }
 
     @Test
-    public void isolationTest(){
+    public void integrationTest_METHOD_STUB(){
+        transformationService = Mockito.mock(TransformationService.class);
+        when(transformationService.transformateSinToCos(x)).thenReturn(expectedResult);
+        sinus = new Sinus(transformationService);
+        Assert.assertEquals(expectedResult,sinus.func(x), 0.001);
+    }
+
+    @Test
+    public void integrationTest_FIRST_STUB() {
+
         cosinus = Mockito.mock(Cosinus.class);
-        when(cosinus.func(pi/2)).thenReturn(Math.cos(pi/2));
-        TransformationService.setCosinus(cosinus);
-        Assert.assertEquals(sinus.func(pi/2), Math.sin(pi/2), 0.001);
+        when(cosinus.func(x)).thenReturn(Math.cos(x));
+
+
+        transformationService.setCosinus(cosinus);
+        sinus = new Sinus(transformationService);
+        Assert.assertEquals(expectedResult, sinus.func(x), 0.001);
     }
 
+
+
     @Test
-    public void integrationTest(){
-        TransformationService.setCosinus(cosinus);
-        Assert.assertEquals(sinus.func(pi/2), Math.sin(pi/2), 0.001);
+    public void integrationTest_WITHOUT_STUB(){
+        transformationService.setCosinus(cosinus);
+        Assert.assertEquals(expectedResult,sinus.func(x),  0.001);
+
     }
 }

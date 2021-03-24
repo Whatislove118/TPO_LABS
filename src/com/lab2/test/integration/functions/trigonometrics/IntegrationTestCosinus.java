@@ -24,10 +24,10 @@ public class IntegrationTestCosinus {
     }
 
     @Test
-    public void isolationTest(){
+    public void integrationTest(){
         cosinus = Mockito.mock(Cosinus.class);
         when(cosinus.func(pi/3)).thenReturn(Math.cos(pi/3));
-        Assert.assertEquals(cosinus.func(pi/3), Math.cos(pi/3), 0.001);
+        Assert.assertEquals(Math.cos(pi/3),cosinus.func(pi/3),  0.001);
     }
 
 }

@@ -1,14 +1,8 @@
 package com.lab2.test.module.functions.logarithmics;
 
-import com.lab2.equations.FirstEquation;
-import com.lab2.equations.SecondEquation;
-import com.lab2.equations.SystemEquations;
-import com.lab2.functions.logarithmics.Logarifm10;
+
 import com.lab2.functions.logarithmics.Logarifm3;
-import com.lab2.functions.logarithmics.Logarifm5;
-import com.lab2.functions.trigonometrics.Cosinus;
-import com.lab2.functions.trigonometrics.Cotangens;
-import com.lab2.functions.trigonometrics.Tangens;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;

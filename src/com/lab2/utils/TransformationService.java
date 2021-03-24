@@ -13,43 +13,43 @@ import sun.rmi.runtime.Log;
 public class TransformationService {
 
     
-    public static Cosinus cosinus = new Cosinus();
+    public  Cosinus cosinus = new Cosinus();
 
-    public static LogarifmN logarifmN = new LogarifmN();
+    public  LogarifmN logarifmN = new LogarifmN();
     
-    public static void setLogarifmN(LogarifmN logarifm){
+    public  void setLogarifmN(LogarifmN logarifm){
         logarifmN = logarifm;
     }
 
-    public static void setCosinus(Cosinus cos){
+    public  void setCosinus(Cosinus cos){
         cosinus = cos;
     }
 
     /* Trigonometric part */
-    public static Double transformateSinToCos(Double x){
+    public  Double transformateSinToCos(Double x){
         return Math.sqrt(
             1 - Math.pow(cosinus.func(x), 2)
         );
     }
 
-    public static Double transformateTanToCos(Double x){
+    public  Double transformateTanToCos(Double x){
         return transformateSinToCos(x) / cosinus.func(x);
     }
 
-    public static Double transformateCotanToCos(Double x){
+    public  Double transformateCotanToCos(Double x){
         return cosinus.func(x) / transformateSinToCos(x);
     }
 
     /* Logarithmic part */
-    public static Double transformateLog3ToLn(Double x){
+    public  Double transformateLog3ToLn(Double x){
         return logarifmN.func(x)/ logarifmN.func(3.0);
     }
 
-    public static Double transformateLog5ToLn(Double x){
+    public  Double transformateLog5ToLn(Double x){
         return logarifmN.func(x)/ logarifmN.func(5.0);
     }
 
-    public static Double transformateLog10ToLn(Double x){
+    public  Double transformateLog10ToLn(Double x){
         return logarifmN.func(x)/logarifmN.func(10.0);
     }
 
