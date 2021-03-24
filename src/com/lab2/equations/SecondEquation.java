@@ -16,6 +16,9 @@ public class SecondEquation {
         this.logarifm10 = logarifm10;
     }
 
+    public SecondEquation() {
+    }
+
     public Double func(Double x){
         return getEquationODZ(x) ? Math.pow(((Math.pow((this.logarifm3.func(x) + this.logarifm5.func(x)), 2) - this.logarifm10.func(x)) * Math.pow(this.logarifm10.func(x), 2)),2) : Double.NaN;
     }

@@ -10,6 +10,9 @@ public class SystemEquations {
         this.secondEquation = secondEquation;
     }
 
+    public SystemEquations() {
+    }
+
     public  Double calculateSystem(Double x){
         if (!checkODZ(x)){
             return Double.NaN;

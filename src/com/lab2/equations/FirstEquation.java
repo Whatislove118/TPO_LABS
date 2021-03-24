@@ -17,6 +17,9 @@ public class FirstEquation {
         this.cotangens = cotangens;
     }
 
+    public FirstEquation() {
+    }
+
     public  Double func(Double x){
         return getEquationODZ(x) ? ((this.tangens.func(x) / this.cotangens.func(x)) + this.cosinus.func(x)) : Double.NaN;
     }

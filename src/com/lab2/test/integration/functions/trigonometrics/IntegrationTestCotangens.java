@@ -41,8 +41,7 @@ public class IntegrationTestCotangens {
 
     @Test
     public void integrationTest_ALL_STUBS() {
-        System.out.println(cosinus.func(x));
-        System.out.println(transformationService.transformateSinToCos(x));
+
         cosinus = Mockito.mock(Cosinus.class);
         when(cosinus.func(x)).thenReturn(Math.cos(x));
 
