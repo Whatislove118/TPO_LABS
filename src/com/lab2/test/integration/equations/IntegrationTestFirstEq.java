@@ -66,6 +66,7 @@ public class IntegrationTestFirstEq {
         cosinus = Mockito.mock(Cosinus.class);
 
         when(cosinus.func(x)).thenReturn(Math.cos(x));
+        cotangens = new Cotangens();
         firstEquation = new FirstEquation(tangens, cosinus, cotangens);
         Assert.assertEquals(expectedResult, firstEquation.func(x), 0.001);
     }
