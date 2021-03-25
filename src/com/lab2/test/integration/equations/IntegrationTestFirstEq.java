@@ -30,14 +30,16 @@ public class IntegrationTestFirstEq {
     Sinus sinus;
 
     FirstEquation firstEquation;
+    TransformationService transformationService;
 
 
     @Before
     public void setUp(){
+        transformationService = new TransformationService();
         cosinus = new Cosinus();
-        cotangens = new Cotangens();
-        tangens = new Tangens();
-        sinus = new Sinus();
+        cotangens = new Cotangens(transformationService);
+        tangens = new Tangens(transformationService);
+        sinus = new Sinus(transformationService);
         firstEquation = new FirstEquation(tangens, cosinus, cotangens);
     }
 
@@ -53,7 +55,6 @@ public class IntegrationTestFirstEq {
         cosinus = Mockito.mock(Cosinus.class);
         tangens = Mockito.mock(Tangens.class);
         cotangens = Mockito.mock(Cotangens.class);
-
         when(cotangens.func(x)).thenReturn(1/Math.tan(x));
         when(tangens.func(x)).thenReturn(Math.tan(x));
         when(cosinus.func(x)).thenReturn(Math.cos(x));
@@ -64,9 +65,21 @@ public class IntegrationTestFirstEq {
     @Test
     public void integrationTest_FIRST_STUB(){
         cosinus = Mockito.mock(Cosinus.class);
-
+        tangens = Mockito.mock(Tangens.class);
         when(cosinus.func(x)).thenReturn(Math.cos(x));
-        cotangens = new Cotangens();
+        when(tangens.func(x)).thenReturn(-Math.tan(x));
+
+
+        transformationService.setCosinus(cosinus);
+        firstEquation = new FirstEquation(tangens, cosinus, cotangens);
+        Assert.assertEquals(expectedResult, firstEquation.func(x), 0.001);
+    }
+
+    @Test
+    public void integrationTest_SECOND_STUB(){
+        cosinus = Mockito.mock(Cosinus.class);
+        when(cosinus.func(x)).thenReturn(Math.cos(x));
+
         firstEquation = new FirstEquation(tangens, cosinus, cotangens);
         Assert.assertEquals(expectedResult, firstEquation.func(x), 0.001);
     }
