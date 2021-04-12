@@ -1,9 +1,14 @@
 package com.lab3.pages;
 
+import com.lab3.utils.ConfProperties;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Authpage {
 
@@ -44,7 +49,13 @@ public class Authpage {
         this.webDriver = webDriver;
     }
 
-
+    public void auth(){
+        this.getEmailInputLogin().sendKeys(ConfProperties.getProperty("auth_email"));
+        this.getPasswordInputLogin().sendKeys(ConfProperties.getProperty("auth_password"));
+        this.getSubmitButtonLogin().click();
+        WebDriverWait wait = new WebDriverWait(this.webDriver, 5); // seconds
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"wizard-main-container\"]/div[2]/div/div[2]/div/div[1]/div[1]/div/div"),"Выбор шаблона"));
+    }
     public WebElement getVkButton() {
         return vkButton;
     }

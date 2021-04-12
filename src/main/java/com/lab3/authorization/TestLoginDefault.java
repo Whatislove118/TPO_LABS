@@ -57,11 +57,7 @@ public class TestLoginDefault {
 
     @Test
     public void testAuthForm_VALID_DATA_AUTHORIZATION(){
-        authpage.getEmailInputLogin().sendKeys(ConfProperties.getProperty("auth_email"));
-        authpage.getPasswordInputLogin().sendKeys(ConfProperties.getProperty("auth_password"));
-        authpage.getSubmitButtonLogin().click();
-        WebDriverWait wait = new WebDriverWait(chromeDriver, 5); // seconds
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"wizard-main-container\"]/div[2]/div/div[2]/div/div[1]/div[1]/div/div"),"Выбор шаблона"));
+        authpage.auth();
         Assert.assertEquals(ConfProperties.getProperty("uKit-template-page"), chromeDriver.getCurrentUrl());
     }
 }
