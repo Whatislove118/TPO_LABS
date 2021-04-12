@@ -1,4 +1,4 @@
 package com.lab3.authorization;
 
-public class Test_ID_1_C {
+public class TestAuthOuter {
 }
