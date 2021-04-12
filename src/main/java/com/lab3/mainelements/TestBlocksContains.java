@@ -30,7 +30,7 @@ public class TestBlocksContains {
 
     @AfterClass
     public static void close(){
-        chromeDriver.close();
+        chromeDriver.quit();
     }
 
     @Test

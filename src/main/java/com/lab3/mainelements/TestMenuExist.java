@@ -29,7 +29,7 @@ public class TestMenuExist {
 
     @AfterClass
     public static void close(){
-        chromeDriver.close();
+        chromeDriver.quit();
     }
 
     @Test
