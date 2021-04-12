@@ -7,11 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Authpage {
 
-    @FindBy(xpath = "//*[@id=\"container_sign_up\"]/div[2]/div[2]/div/div[1]/div[1]/span[1]")
+    @FindBy(xpath = "/html/body/div[1]/div/div[7]/div/div/div[2]/div[2]/div/div[1]/div[1]/span[1]")
     private WebElement vkButton;
-    @FindBy(xpath = "//*[@id=\"container_sign_up\"]/div[2]/div[2]/div/div[1]/div[1]/span[2]")
+    @FindBy(xpath = "/html/body/div[1]/div/div[7]/div/div/div[2]/div[2]/div/div[1]/div[1]/span[2]")
     private WebElement facebookButton;
-    @FindBy(xpath = "///*[@id=\"container_sign_up\"]/div[2]/div[2]/div/div[1]/div[1]/span[3]")
+    @FindBy(xpath = "/html/body/div[1]/div/div[7]/div/div/div[2]/div[2]/div/div[1]/div[1]/span[3]")
     private WebElement uUIDButton;
 
     @FindBy(xpath = "//*[@id=\"sign_up_email\"]")
@@ -33,6 +33,8 @@ public class Authpage {
     private WebElement errBlock;
     @FindBy(xpath = "//*[@id=\"container_sign_up\"]/div[2]/div[2]/div/p[3]/button")
     private WebElement loginButton;
+
+
 
 
 
