@@ -40,7 +40,7 @@ public class TestRegistrationDefault {
     @Test
     public void testAuthForm_WITHOUT_DATA_REGISTRATION() throws InterruptedException {
         authpage.getSubmitButtonReg().click();
-        Assert.assertTrue(Checker.checkIsExist(authpage.getErrBlock()));
+        Assert.assertEquals(ConfProperties.getProperty("uKit-auth-page"), chromeDriver.getCurrentUrl());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TestRegistrationDefault {
         authpage.getEmailInputReg().sendKeys("aaa");
         authpage.getPasswordInputReg().sendKeys("aaa");
         authpage.getSubmitButtonReg().click();
-        Assert.assertTrue(Checker.checkIsExist(authpage.getErrBlock()));
+        Assert.assertEquals(ConfProperties.getProperty("uKit-auth-page"), chromeDriver.getCurrentUrl());
 
     }
 

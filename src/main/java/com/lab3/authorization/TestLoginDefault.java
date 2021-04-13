@@ -56,8 +56,9 @@ public class TestLoginDefault {
     }
 
     @Test
-    public void testAuthForm_VALID_DATA_AUTHORIZATION(){
-        authpage.auth();
-        Assert.assertEquals(ConfProperties.getProperty("uKit-template-page"), chromeDriver.getCurrentUrl());
+    public void testAuthForm_VALID_DATA_AUTHORIZATION() throws InterruptedException {
+        authpage.authOnExProfile();
+        Thread.sleep(5000);
+        Assert.assertEquals(ConfProperties.getProperty("uKit-choose-page"), chromeDriver.getCurrentUrl());
     }
 }
