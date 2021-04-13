@@ -56,6 +56,13 @@ public class Authpage {
         WebDriverWait wait = new WebDriverWait(this.webDriver, 5); // seconds
         wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"wizard-main-container\"]/div[2]/div/div[2]/div/div[1]/div[1]/div/div"),"Выбор шаблона"));
     }
+
+    public void authOnExProfile(){
+        this.getEmailInputLogin().sendKeys(ConfProperties.getProperty("auth_email"));
+        this.getPasswordInputLogin().sendKeys(ConfProperties.getProperty("auth_password"));
+        this.getSubmitButtonLogin().click();
+    }
+
     public WebElement getVkButton() {
         return vkButton;
     }

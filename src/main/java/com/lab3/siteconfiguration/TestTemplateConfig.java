@@ -40,7 +40,7 @@ public class TestTemplateConfig {
 
     @Test
     public void testChooseTemplate() throws InterruptedException {
-        template.getTemplate().click();
+        template.chooseTemplate();
         Assert.assertEquals(ConfProperties.getProperty("uKit-domain-page"), chromeDriver.getCurrentUrl());
         Thread.sleep(500000);
     }

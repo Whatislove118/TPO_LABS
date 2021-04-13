@@ -1,7 +1,10 @@
 package com.lab3.pages;
 
+import com.lab3.utils.ConfProperties;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -18,5 +21,10 @@ public class Templatepage {
 
     public WebElement getTemplate() {
         return template;
+    }
+
+
+    public void chooseTemplate(){
+        this.getTemplate().click();
     }
 }
