@@ -13,7 +13,7 @@ public class Constructorpage {
     @FindBy(xpath = "/html/body/div[2]/div/div[2]/div[1]/div[2]/div[2]/div/div[2]/div[2]/div[2]/div[1]/span[2]")
     private WebElement changedImageDnD;
 
-    @FindBy(xpath = "//*[@id=\"ul-panelConstructor\"]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div[1]/div/span[2]")
+    @FindBy(xpath = "//*[@id=\"ul-panelConstructor\"]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div[1]/div")
     private WebElement basicButton;
 
     @FindBy(xpath = "//*[@id=\"ul-panelConstructor\"]/div[2]/div/div[1]/div[1]/div[1]/div[1]/div[1]/ul/li[6]")
@@ -57,6 +57,9 @@ public class Constructorpage {
 
     @FindBy(xpath = "//*[@id=\"ul-left-menu\"]/div[1]/div[3]/span[6]")
     private WebElement publishButton;
+
+    @FindBy(xpath = "//*[@id=\"body\"]")
+    private WebElement canvas;
 
 
 
@@ -130,6 +133,10 @@ public class Constructorpage {
 
     public WebElement getPublishButton() {
         return publishButton;
+    }
+
+    public WebElement getCanvas() {
+        return canvas;
     }
 
     public WebElement getImageDnD() {
