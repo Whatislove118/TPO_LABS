@@ -6,12 +6,10 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,7 +44,7 @@ public class TestDragAndDrop {
 
 
     @Test
-    public void testChoosingDomain() throws InterruptedException {
+    public void testDragAndDrop() throws InterruptedException {
         Actions actions = new Actions(chromeDriver);
         while (true){
             try {
@@ -56,22 +54,21 @@ public class TestDragAndDrop {
                 Thread.sleep(2000);
             }
         }
-        int x = constructorpage.getImageDnD().getLocation().x;
-        int y = constructorpage.getImageDnD().getLocation().y;
-        System.out.println(x);
-        System.out.println(y);
-        int offset = 100;
-        Thread.sleep(5000);
-        actions.dragAndDropBy(constructorpage.getImageDnD(),offset, offset).build().perform();
-        System.out.println(constructorpage.getImageDnD().getLocation().x);
-        Assert.assertEquals(
-                (x + offset) *
-                                (y + offset),
+        int y = 0;
+        int offset = 0;
+        try{
+            y = constructorpage.getImageDnD().getLocation().y;
+            constructorpage.getImageDnD().getLocation();
+            offset = -150;
+            actions.dragAndDropBy(constructorpage.getImageDnD(),0, offset).perform();
+        }catch (Exception e){
+            y = constructorpage.getChangedImageDnD().getLocation().y;
+            offset = 150;
+            actions.dragAndDropBy(constructorpage.getChangedImageDnD(),0, offset).perform();
+        }
+        Thread.sleep(1000);
+        Assert.assertEquals( (y + offset), constructorpage.getChangedImageDnD().getLocation().y, 50);
 
-                   constructorpage.getImageDnD().getLocation().x *
-                                constructorpage.getImageDnD().getLocation().y);
-
-        Thread.sleep(5000);
     }
 
 }
