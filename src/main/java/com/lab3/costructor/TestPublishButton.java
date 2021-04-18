@@ -47,7 +47,7 @@ public class TestPublishButton {
 
 
     @Test
-    public void testConstructorButton(){
+    public void testPublishButton(){
         Assert.assertTrue(constructorpage.getPublishButton().isDisplayed());
     }
 }

@@ -57,7 +57,7 @@ public class TestRegistrationDefault {
         authpage.getEmailInputReg().sendKeys(ConfProperties.getProperty("auth_email"));
         authpage.getPasswordInputReg().sendKeys(ConfProperties.getProperty("auth_password"));
         authpage.getSubmitButtonReg().click();
-        Assert.assertEquals(ConfProperties.getProperty("uKit-template-page"), chromeDriver.getCurrentUrl());
+        Assert.assertNotEquals(ConfProperties.getProperty("uKit-template-page"), chromeDriver.getCurrentUrl());
     }
 
 

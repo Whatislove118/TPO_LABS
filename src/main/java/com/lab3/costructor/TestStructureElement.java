@@ -47,7 +47,7 @@ public class TestStructureElement {
 
 
     @Test
-    public void testSocialElement() throws InterruptedException {
+    public void testStructureElement() throws InterruptedException {
         Actions actions = new Actions(chromeDriver);
         actions.dragAndDrop(constructorpage.getStructureElement(), constructorpage.getCanvas());
         Thread.sleep(1000);
